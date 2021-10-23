@@ -54,5 +54,10 @@ class Booking(webdriver.Chrome):
         place_input.clear()
         place_input.send_keys(place)
 
-    def print_page(self):
+    def print_page_as_pdf(self, set_name: str = ''):
+        original_name = self.title
+        if set_name != '':
+            self.execute_script(f'document.title="{set_name}"')
         self.execute_script('window.print();')
+        if set_name != '':
+            self.execute_script(f'document.title="{original_name}"')
