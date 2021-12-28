@@ -57,7 +57,9 @@ class Booking(webdriver.Chrome):
     def print_page_as_pdf(self, set_name: str = ''):
         original_name = self.title
         if set_name != '':
+            # change page title in order to change the pdf filename if "set_name" is provided
             self.execute_script(f'document.title="{set_name}"')
         self.execute_script('window.print();')
         if set_name != '':
+            # Change page title back to original
             self.execute_script(f'document.title="{original_name}"')
